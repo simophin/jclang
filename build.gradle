@@ -1,0 +1,17 @@
+apply plugin: 'java'
+
+repositories {
+    jcenter()
+}
+
+sourceSets {
+    main.java.srcDir 'src'
+    test.resources.srcDirs 'testData', 'include'
+    test.java.srcDir 'tests'
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+    compile 'org.jetbrains:annotations:13.0'
+    compile 'net.java.dev.jna:jna:3.3.0'
+}
