@@ -32,4 +32,8 @@ public abstract class AbstractIndexerCallback implements IndexerCallback {
     @Override
     public void indexDeclaration(@NotNull DeclarationInfo info) {
     }
+
+    @Override
+    public void indexEntityReference(@NotNull EntityRefInfo info) {
+    }
 }

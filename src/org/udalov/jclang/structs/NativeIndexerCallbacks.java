@@ -23,6 +23,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.udalov.jclang.CXFile;
 import org.udalov.jclang.DeclarationInfo;
+import org.udalov.jclang.EntityRefInfo;
 import org.udalov.jclang.IndexerCallback;
 
 @SuppressWarnings("unused")
@@ -64,6 +65,14 @@ public class NativeIndexerCallbacks extends Structure {
                 callback.indexDeclaration(new DeclarationInfo(info));
             }
         };
+
+        this.indexEntityReference = new EntityReferenceCallback() {
+            @Override
+            public void apply(@Nullable Pointer clientData, @NotNull CXIdxEntityRefInfo.ByReference info) {
+                callback.indexEntityReference(new EntityRefInfo(info));
+            }
+        };
+
         initFieldOrder();
     }
 
@@ -83,5 +92,9 @@ public class NativeIndexerCallbacks extends Structure {
 
     public interface IndexDeclarationCallback extends Callback {
         void apply(@Nullable Pointer clientData, @NotNull CXIdxDeclInfo.ByReference info);
+    }
+
+    public interface EntityReferenceCallback extends Callback {
+        void apply(@Nullable Pointer clientData, @NotNull CXIdxEntityRefInfo.ByReference info);
     }
 }

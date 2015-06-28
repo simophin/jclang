@@ -28,4 +28,6 @@ public interface IndexerCallback {
     void startedTranslationUnit();
 
     void indexDeclaration(@NotNull DeclarationInfo info);
+
+    void indexEntityReference(@NotNull EntityRefInfo info);
 }
