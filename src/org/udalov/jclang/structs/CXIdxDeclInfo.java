@@ -20,6 +20,9 @@ import com.sun.jna.Structure;
 import com.sun.jna.ptr.PointerByReference;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Arrays;
+import java.util.List;
+
 @SuppressWarnings("unused")
 public class CXIdxDeclInfo extends Structure {
     public CXIdxEntityInfo.ByReference entityInfo;
@@ -36,10 +39,10 @@ public class CXIdxDeclInfo extends Structure {
     public PointerByReference /* CXIdxAttrInfo */ attributes;
     public int numAttributes;
 
-    public CXIdxDeclInfo() {
-        super();
-        setFieldOrder(new String[]{"entityInfo", "cursor", "loc", "semanticContainer", "lexicalContainer", "isRedeclaration",
-                                   "isDefinition", "isContainer", "declAsContainer", "isImplicit", "attributes", "numAttributes"});
+    @Override
+    protected List getFieldOrder() {
+        return Arrays.asList("entityInfo", "cursor", "loc", "semanticContainer", "lexicalContainer", "isRedeclaration",
+                "isDefinition", "isContainer", "declAsContainer", "isImplicit", "attributes", "numAttributes");
     }
 
     public static class ByReference extends CXIdxDeclInfo implements Structure.ByReference {}

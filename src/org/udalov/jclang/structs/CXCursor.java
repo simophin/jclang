@@ -19,16 +19,19 @@ package org.udalov.jclang.structs;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 
+import java.util.Arrays;
+import java.util.List;
+
 @SuppressWarnings("unused")
 public class CXCursor extends Structure {
     public int kind;
     public int xdata;
     public Pointer[] data = new Pointer[3];
 
-    public CXCursor() {
-        super();
-        setFieldOrder(new String[]{"kind", "xdata", "data"});
+    @Override
+    protected List getFieldOrder() {
+        return Arrays.asList("kind", "xdata", "data");
     }
-    
+
     public static class ByValue extends CXCursor implements Structure.ByValue {}
 }

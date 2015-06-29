@@ -19,14 +19,17 @@ package org.udalov.jclang.structs;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 
+import java.util.Arrays;
+import java.util.List;
+
 @SuppressWarnings("unused")
 public class CXType extends Structure {
     public int kind;
     public Pointer[] data = new Pointer[2];
 
-    public CXType() {
-        super();
-        setFieldOrder(new String[]{"kind", "data"});
+    @Override
+    protected List getFieldOrder() {
+        return Arrays.asList("kind", "data");
     }
 
     public static class ByValue extends CXType implements Structure.ByValue {}

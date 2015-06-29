@@ -20,6 +20,9 @@ import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Arrays;
+import java.util.List;
+
 @SuppressWarnings("unused")
 public class CXIdxAttrInfo extends Structure {
     public int kind;
@@ -28,16 +31,15 @@ public class CXIdxAttrInfo extends Structure {
 
     public CXIdxAttrInfo() {
         super();
-        initFieldOrder();
     }
 
     public CXIdxAttrInfo(@NotNull Pointer pointer) {
         super(pointer);
-        initFieldOrder();
         read();
     }
 
-    private void initFieldOrder() {
-        setFieldOrder(new String[]{"kind", "cursor", "loc"});
+    @Override
+    protected List getFieldOrder() {
+        return Arrays.asList("kind", "cursor", "loc");
     }
 }

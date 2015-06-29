@@ -13,5 +13,5 @@ sourceSets {
 dependencies {
     testCompile 'junit:junit:4.12'
     compile 'org.jetbrains:annotations:13.0'
-    compile 'net.java.dev.jna:jna:3.3.0'
+    compile 'net.java.dev.jna:jna:4.1.0'
 }

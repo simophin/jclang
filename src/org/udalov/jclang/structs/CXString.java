@@ -19,14 +19,17 @@ package org.udalov.jclang.structs;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 
+import java.util.Arrays;
+import java.util.List;
+
 @SuppressWarnings("unused")
 public class CXString extends Structure {
     public Pointer data;
     public int privateFlags;
 
-    public CXString() {
-        super();
-        setFieldOrder(new String[]{"data", "privateFlags"});
+    @Override
+    protected List getFieldOrder() {
+        return Arrays.asList("data", "privateFlags");
     }
 
     public static class ByValue extends CXString implements Structure.ByValue {}

@@ -18,13 +18,16 @@ package org.udalov.jclang.structs;
 
 import com.sun.jna.Structure;
 
+import java.util.Arrays;
+import java.util.List;
+
 @SuppressWarnings("unused")
 public class CXIdxContainerInfo extends Structure {
     public CXCursor.ByValue cursor;
 
-    public CXIdxContainerInfo() {
-        super();
-        setFieldOrder(new String[]{"cursor"});
+    @Override
+    protected List getFieldOrder() {
+        return Arrays.asList("cursor");
     }
 
     public static class ByReference extends CXIdxContainerInfo implements Structure.ByReference {}

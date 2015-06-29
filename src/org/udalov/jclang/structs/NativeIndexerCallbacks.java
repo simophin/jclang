@@ -26,6 +26,9 @@ import org.udalov.jclang.DeclarationInfo;
 import org.udalov.jclang.EntityRefInfo;
 import org.udalov.jclang.IndexerCallback;
 
+import java.util.Arrays;
+import java.util.List;
+
 @SuppressWarnings("unused")
 public class NativeIndexerCallbacks extends Structure {
     // TODO: all callbacks
@@ -37,11 +40,6 @@ public class NativeIndexerCallbacks extends Structure {
     public StartedTranslationUnitCallback startedTranslationUnit;
     public Callback indexDeclaration;
     public Callback indexEntityReference;
-
-    public NativeIndexerCallbacks() {
-        super();
-        initFieldOrder();
-    }
 
     public NativeIndexerCallbacks(@NotNull final IndexerCallback callback) {
         super();
@@ -72,13 +70,12 @@ public class NativeIndexerCallbacks extends Structure {
                 callback.indexEntityReference(new EntityRefInfo(info));
             }
         };
-
-        initFieldOrder();
     }
 
-    private void initFieldOrder() {
-        setFieldOrder(new String[]{"abortQuery", "diagnostic", "enteredMainFile", "ppIncludedFile", "importedASTFile",
-                                   "startedTranslationUnit", "indexDeclaration", "indexEntityReference"});
+    @Override
+    protected List getFieldOrder() {
+        return Arrays.asList("abortQuery", "diagnostic", "enteredMainFile", "ppIncludedFile", "importedASTFile",
+                "startedTranslationUnit", "indexDeclaration", "indexEntityReference");
     }
 
     public interface EnteredMainFileCallback extends Callback {

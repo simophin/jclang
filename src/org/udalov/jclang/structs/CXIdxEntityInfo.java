@@ -20,6 +20,9 @@ import com.sun.jna.Structure;
 import com.sun.jna.ptr.PointerByReference;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Arrays;
+import java.util.List;
+
 @SuppressWarnings("unused")
 public class CXIdxEntityInfo extends Structure {
     public int kind;
@@ -32,9 +35,9 @@ public class CXIdxEntityInfo extends Structure {
     public PointerByReference /* CXIdxAttrInfo */ attributes;
     public int numAttributes;
 
-    public CXIdxEntityInfo() {
-        super();
-        setFieldOrder(new String[]{"kind", "templateKind", "lang", "name", "USR", "cursor", "attributes", "numAttributes"});
+    @Override
+    protected List getFieldOrder() {
+        return Arrays.asList("kind", "templateKind", "lang", "name", "USR", "cursor", "attributes", "numAttributes");
     }
 
     public static class ByReference extends CXIdxEntityInfo implements Structure.ByReference {}

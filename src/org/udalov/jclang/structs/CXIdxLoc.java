@@ -19,14 +19,17 @@ package org.udalov.jclang.structs;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 
+import java.util.Arrays;
+import java.util.List;
+
 @SuppressWarnings("unused")
 public class CXIdxLoc extends Structure {
     public Pointer[] ptr_data = new Pointer[2];
     public int int_data;
 
-    public CXIdxLoc() {
-        super();
-        setFieldOrder(new String[]{"ptr_data", "int_data"});
+    @Override
+    protected List getFieldOrder() {
+        return Arrays.asList("ptr_data", "int_data");
     }
 
     public static class ByValue extends CXIdxLoc implements Structure.ByValue {}
